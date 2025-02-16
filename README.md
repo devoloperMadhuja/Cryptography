@@ -11,6 +11,9 @@ Caesar preferred a shift of three, but today, a common use of the Caesar Cipher 
 Importantly, this technique is not widely used today — that’s because it is easy to break.
 
 # Example:
-Plaintext:I am a Student.
-Shift: 3
-Ciphertext: L dp d Vwxghqw.
+# Plaintext:
+I am a Student.
+# Shift:
+3
+# Ciphertext:
+L dp d Vwxghqw.
