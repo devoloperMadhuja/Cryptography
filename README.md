@@ -9,3 +9,8 @@ This is the earliest known and simplest method of encryption, used by Julius Cae
 Caesar preferred a shift of three, but today, a common use of the Caesar Cipher is called "ROT13." This stands for "rotate by 13 places," which means moving each letter of the alphabet 13 spots forward.
 
 Importantly, this technique is not widely used today — that’s because it is easy to break.
+
+# Example:
+Plaintext:I am a Student.
+Shift: 3
+Ciphertext: L dp d Vwxghqw.
