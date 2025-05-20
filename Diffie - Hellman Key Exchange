@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+// Function to perform modular exponentiation
+// It returns (base^exp) % mod
+int power(int base, int exp, int mod) {
+int result = 1;
+base = base % mod;
+while (exp > 0) {
+if (exp % 2 == 1) // If exp is odd, multiply base with result
+result = (result * base) % mod;
+exp = exp >> 1; // exp = exp / 2
+base = (base * base) % mod; // Change base to base^2 % mod
+}
+return result;
+}
+// Function to generate a random number in the range [min, max]
+int generate_random(int min, int max) {
+return rand() % (max - min + 1) + min;
+}
+int main() {
+int q, a, Xa, Xb, Ya, Yb, K1, K2;
+// Initialize random number generator
+srand(time(0));
+// Input: prime number q and its primitive root a
+printf("Enter a prime number q: ");
+scanf("%d", &q);
+printf("Enter a primitive root modulo %d: ", q);
+scanf("%d", &a);
+// Generate private keys Xa and Xb
+Xa = generate_random(2, q - 1);
+Xb = generate_random(2, q - 1);
+// Ensure Xa and Xb are different
+while (Xa == Xb) {
+Xb = generate_random(2, q - 1);
+}
+// Compute public keys
+Ya = power(a, Xa, q); // Public key of the first party
+Yb = power(a, Xb, q); // Public key of the second party
+// Compute shared secret keys
+K1 = power(Yb, Xa, q); // Shared secret key calculated by the first party
+K2 = power(Ya, Xb, q); // Shared secret key calculated by the second party
+// Output the results
+printf("Private key Xa: %d\n", Xa);
+printf("Private key Xb: %d\n", Xb);
+printf("Public key Ya: %d\n", Ya);
+printf("Public key Yb: %d\n", Yb);
+printf("Shared secret key (K1): %d\n", K1);
+printf("Shared secret key (K2): %d\n", K2);
+// Verify if the shared secret keys are equal
+if (K1 == K2) {
+printf("Key exchange successful. Shared secret key is %d\n", K1);
+} else {
+printf("Key exchange failed. Keys do not match.\n");
+}
+return 0;
+}
