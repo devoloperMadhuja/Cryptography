@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int mod26(int x) {
+ return (x >= 0) ? (x % 26) : (26 - (-x) % 26);
+}
+void encrypt(char *plaintext, int key[3][3]) {
+ int len = strlen(plaintext);
+ int i, j, k, x, y;
+ char ciphertext[len + 1];
+ for (i = 0; i < len; i += 3) {
+ x = 0, y = 0;
+ for (j = 0; j < 3; j++) {
+ for (k = 0; k < 3; k++) {
+ x = mod26(x + key[j][k] * (plaintext[i + k] - 'A'));
+ } ciphertext[i + j] = x % 26 + 'A';
+ } ciphertext[i + 3] = '\0';
+ } printf("Ciphertext: %s\n", ciphertext);
+}
+int main() {
+ char plaintext[] = "HELLO WORLD";
+ int key[3][3] = {{6, 24, 1}, {13, 16, 10}, {20, 17, 15}};
+ encrypt(plaintext, key);
+ return 0;
+}
