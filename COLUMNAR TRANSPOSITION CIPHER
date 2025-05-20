@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+ char plaintext[] = "Student Life";
+ char keyword[] = "Life";
+ int key = strlen(keyword);
+// Encrypt
+ char ciphertext[strlen(plaintext)];
+ int rows = strlen(plaintext) / key;
+ int cols = key;
+ int index = 0;
+ for (int i = 0; i < cols; i++) {
+ for (int j = 0; j < rows; j++) {
+ ciphertext[index++] = plaintext[j * key + i];
+ }
+ }
+ ciphertext[index] = '\0';
+ printf("Plaintext: %s\n", plaintext);
+ printf("Keyword: %s\n", keyword);
+ printf("Ciphertext: %s\n", ciphertext);
+// Decrypt
+ char decryptedtext[strlen(ciphertext)];
+ index = 0;
+ for (int i = 0; i < rows; i++) {
+ for (int j = 0; j < cols; j++) {
+ decryptedtext[index++] = ciphertext[j * rows + i];
+ }
+ }
+ decryptedtext[index] = '\0';
+ printf("Decryptedtext: %s\n", decryptedtext);
+ return 0;
+}
