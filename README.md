@@ -92,7 +92,8 @@ A transposition cipher that rearranges characters based on a predefined column o
 A symmetric-key algorithm that encrypts data in 64-bit blocks using a 56-bit key.  
 
 ### 📌 **Diagram**  
-🖼 **![DES Diagram](https://upload.wikimedia.org/wikipedia/commons/8/81/DES-main-network.png)**  
+🖼 **![DES Diagram](![WhatsApp Image 2025-05-20 at 14 08 32_72a455e8](https://github.com/user-attachments/assets/e310946a-d379-4d82-b4b3-539fc1c1923b)
+)**  
 
 ---
 
@@ -100,7 +101,7 @@ A symmetric-key algorithm that encrypts data in 64-bit blocks using a 56-bit key
 A symmetric encryption algorithm that operates on blocks of data using keys of 128, 192, or 256 bits.  
 
 ### 📌 **Diagram**  
-🖼 **![AES Diagram](https://upload.wikimedia.org/wikipedia/commons/2/27/AES-Encryption-Involution.png)**  
+🖼 **![AES Diagram](![WhatsApp Image 2025-05-20 at 14 09 41_44292c90](https://github.com/user-attachments/assets/3b8cdc97-facd-49ba-85dc-16d178f89984))**  
 
 ---
 
