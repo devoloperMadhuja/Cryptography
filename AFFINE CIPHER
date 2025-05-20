@@ -1,0 +1,71 @@
+//Include necessary headers:
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+//Define functions for modular inverse and gcd:
+int gcd(int a, int b) {
+while (b != 0) {
+int temp = b;
+b = a % b;
+a = temp;
+}
+return a;
+}
+int modInverse(int a, int m) {
+a = a % m;
+for (int x = 1; x < m; x++) {
+if ((a * x) % m == 0) {
+return x;
+}
+}
+return -1;
+}
+//Encrypt and decrypt functions:
+char encryptChar(char c, int a, int b, int m) {
+if (isalpha(c)) {
+char base = isupper(c) ? 'A' : 'a';
+return (a * (c - base) + b) % m + base;
+}
+return c; // Non-alphabetic characters are not encrypted
+}
+char decryptChar(char c, int a, int b, int m) {
+if (isalpha(c)) {
+char base = isupper(c) ? 'A' : 'a';
+int a_inv = modInverse(a, m);
+if (a_inv == -1) {
+fprintf(stderr, "No modular inverse for a=%d, m=%d\n", a, m);
+exit(1);
+}
+return (a_inv * ((c - base) - b + m)) % m + base;
+}
+return c; // Non-alphabetic characters are not decrypted
+}
+//Main function to handle user input and perform encryption/decryption:
+int main() {
+int a, b, m = 26;
+char choice, input[256];
+printf("Enter key 'a': ");
+scanf("%d", &a);
+printf("Enter key 'b': ");
+scanf("%d", &b);
+if (gcd(a, m) != 1) {
+printf("Key 'a' must be coprime with %d.\n", m);
+return 1;
+}
+printf("Do you want to encrypt (e) or decrypt (d)? ");
+scanf(" %c", &choice);
+printf("Enter the text: ");
+scanf(" %[^\n]", input);
+for (int i = 0; input[i] != '\0'; i++) {
+if (choice == 'e') {
+input[i] = encryptChar(input[i], a, b, m);
+} else if (choice == 'd') {
+input[i] = decryptChar(input[i], a, b, m);
+} else {
+printf("Invalid choice.\n");
+return 1;
+}
+}
+printf("Output: %s\n", input);
+return 0;
+}
